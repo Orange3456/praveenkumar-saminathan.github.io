@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praveenkumar Saminathan — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1a3c6b;
+    --accent: #c8a96e;
+    --accent2: #e8c98a;
+    --light: #f5f0e8;
+    --white: #fdfaf5;
+    --gray: #8a8f9a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(253,250,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,110,0.2);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--navy); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--navy); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 4rem; gap: 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .hero-text { padding-top: 5rem; animation: fadeUp 0.9s ease both; }
+  .hero-eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero-name { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem,5vw,4.2rem); line-height: 1.1; color: var(--navy); margin-bottom: 0.5rem; }
+  .hero-name em { font-style: italic; color: var(--blue); }
+  .hero-title { font-size: 1.05rem; color: var(--gray); font-weight: 400; margin-bottom: 2rem; line-height: 1.6; }
+  .hero-title strong { color: var(--navy); font-weight: 600; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+  .tag { padding: 0.35rem 0.9rem; border: 1px solid rgba(26,60,107,0.2); border-radius: 100px; font-size: 0.78rem; color: var(--blue); font-weight: 500; background: rgba(26,60,107,0.04); transition: all 0.2s; }
+  .tag:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { padding: 0.8rem 2rem; background: var(--navy); color: white; text-decoration: none; font-size: 0.88rem; font-weight: 600; border-radius: 4px; transition: all 0.25s; }
+  .btn-primary:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,60,107,0.25); }
+  .btn-secondary { padding: 0.8rem 2rem; background: transparent; color: var(--navy); text-decoration: none; font-size: 0.88rem; font-weight: 600; border: 1.5px solid var(--navy); border-radius: 4px; transition: all 0.25s; }
+  .btn-secondary:hover { background: var(--navy); color: white; transform: translateY(-2px); }
+  .hero-visual { display: flex; justify-content: center; align-items: center; animation: fadeUp 0.9s 0.2s ease both; }
+  .hero-card { background: var(--navy); border-radius: 16px; padding: 2.5rem; width: 100%; max-width: 380px; position: relative; overflow: hidden; box-shadow: 0 32px 80px rgba(13,27,42,0.25); }
+  .hero-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(200,169,110,0.2), transparent 70%); border-radius: 50%; }
+  .card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+  .card-name { font-family: 'DM Serif Display', serif; font-size: 1.5rem; color: white; margin-bottom: 0.3rem; }
+  .card-role { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 2rem; }
+  .card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+  .card-divider { height: 1px; background: rgba(255,255,255,0.1); margin-bottom: 1.5rem; }
+  .card-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .card-skill { padding: 0.3rem 0.7rem; background: rgba(200,169,110,0.15); border: 1px solid rgba(200,169,110,0.3); border-radius: 4px; font-size: 0.72rem; color: var(--accent2); font-weight: 500; }
+  .card-location { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+  .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem,3.5vw,3rem); color: var(--navy); margin-bottom: 1rem; line-height: 1.2; }
+  .section-subtitle { font-size: 1rem; color: var(--gray); max-width: 520px; line-height: 1.7; margin-bottom: 3.5rem; }
+
+  /* ABOUT */
+  .about { background: var(--light); }
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { font-size: 1.02rem; line-height: 1.8; color: #3a4050; margin-bottom: 1.2rem; }
+  .about-facts { display: flex; flex-direction: column; gap: 1.2rem; }
+  .fact { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; background: white; border-radius: 10px; border-left: 3px solid var(--accent); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .fact-icon { font-size: 1.3rem; margin-top: 0.1rem; }
+  .fact-label { font-size: 0.72rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.2rem; }
+  .fact-value { font-size: 0.95rem; font-weight: 600; color: var(--navy); }
+
+  /* EXPERIENCE */
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+  .exp-item:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+  .exp-date { font-size: 0.8rem; color: var(--accent); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+  .exp-company { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
+  .exp-role { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 0.8rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-bullets li { font-size: 0.92rem; color: #4a5060; line-height: 1.65; padding-left: 1.2rem; position: relative; }
+  .exp-bullets li::before { content: '-'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .exp-tag { padding: 0.2rem 0.65rem; background: rgba(26,60,107,0.07); border-radius: 4px; font-size: 0.72rem; color: var(--blue); font-weight: 500; }
+
+  /* SKILLS */
+  .skills-bg { background: var(--navy); color: white; }
+  .skills-bg .section-title { color: white; }
+  .skills-bg .section-subtitle { color: rgba(255,255,255,0.5); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1.5rem; }
+  .skill-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.8rem; transition: all 0.25s; }
+  .skill-card:hover { background: rgba(200,169,110,0.1); border-color: rgba(200,169,110,0.3); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .skill-category { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+  .skill-list { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.8rem; }
+  .project-card { background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; padding: 2rem; transition: all 0.25s; position: relative; overflow: hidden; }
+  .project-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .project-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); transform: translateY(-5px); }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-num { font-family: 'DM Serif Display', serif; font-size: 3rem; color: rgba(200,169,110,0.18); line-height: 1; margin-bottom: 0.8rem; }
+  .project-badge { display: inline-block; padding: 0.28rem 0.8rem; border-radius: 100px; font-size: 0.74rem; font-weight: 600; margin-bottom: 1rem; }
+  .project-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.7rem; line-height: 1.3; }
+  .project-desc { font-size: 0.88rem; color: #4a5060; line-height: 1.7; margin-bottom: 1.2rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+  .project-tag { padding: 0.22rem 0.65rem; background: rgba(26,60,107,0.07); border-radius: 4px; font-size: 0.72rem; color: var(--blue); font-weight: 500; }
+  .project-org { font-size: 0.78rem; color: var(--accent); font-weight: 600; letter-spacing: 0.03em; }
+
+  /* EDUCATION */
+  .edu-bg { background: var(--light); }
+  .edu-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+  .edu-item { display: grid; grid-template-columns: 1fr auto; align-items: start; background: white; border-radius: 12px; padding: 1.8rem 2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.05); border-left: 4px solid var(--blue); }
+  .edu-degree { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 0.3rem; }
+  .edu-school { font-size: 0.9rem; color: var(--blue); font-weight: 600; margin-bottom: 0.2rem; }
+  .edu-location { font-size: 0.82rem; color: var(--gray); }
+  .edu-year { font-size: 0.8rem; color: var(--accent); font-weight: 600; white-space: nowrap; padding-top: 0.3rem; }
+  .certs-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 640px; }
+  .cert-item { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.5rem; background: white; border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; transition: all 0.2s; }
+  .cert-item:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(200,169,110,0.15); }
+  .cert-badge { width: 36px; height: 36px; background: linear-gradient(135deg, var(--blue), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .cert-name { font-size: 0.9rem; font-weight: 600; color: var(--navy); }
+  .cert-issuer { font-size: 0.78rem; color: var(--gray); margin-top: 0.1rem; }
+
+  /* CONTACT */
+  .contact-bg { background: var(--navy); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .contact-bg .section-title { color: white; }
+  .contact-bg .section-subtitle { color: rgba(255,255,255,0.5); max-width: 400px; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem 1.5rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; text-decoration: none; color: white; transition: all 0.25s; }
+  .contact-link:hover { background: rgba(200,169,110,0.15); border-color: var(--accent); }
+  .contact-link-icon { font-size: 1.2rem; }
+  .contact-link-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+  .contact-link-value { font-size: 0.95rem; font-weight: 500; }
+
+  footer { background: #08111a; color: rgba(255,255,255,0.3); text-align: center; padding: 2rem; font-size: 0.8rem; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PS<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Based in Milan, Italy</div>
+    <h1 class="hero-name">Praveen<em>kumar</em><br>Saminathan</h1>
+    <p class="hero-title"><strong>IT & Customer Experience Professional</strong><br>MSc Candidate at Politecnico di Milano · English C2</p>
+    <div class="hero-tags">
+      <span class="tag">Customer Support</span>
+      <span class="tag">IT Systems</span>
+      <span class="tag">Data Analysis</span>
+      <span class="tag">GIS & Geospatial</span>
+      <span class="tag">ServiceNow</span>
+      <span class="tag">AWS Certified</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#projects" class="btn-secondary">View Projects</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-label">Profile Card</div>
+      <div class="card-name">Praveenkumar</div>
+      <div class="card-role">IT & CX Specialist · MSc Candidate</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">AWS Certs</div></div>
+        <div class="stat"><div class="stat-num">C2</div><div class="stat-label">English Level</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Projects</div></div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-skills">
+        <span class="card-skill">ServiceNow</span>
+        <span class="card-skill">Jira</span>
+        <span class="card-skill">Python</span>
+        <span class="card-skill">AWS</span>
+        <span class="card-skill">GIS</span>
+        <span class="card-skill">SQL</span>
+      </div>
+      <div class="card-location">📍 Milan, Italy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-eyebrow">About Me</div>
+  <h2 class="section-title">A versatile professional<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--blue)">bridging tech & people</em></h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm a tech-focused professional currently pursuing a Master's in Geo-Informatics Engineering at Politecnico di Milano. With over 3 years of hands-on experience across IT support, customer experience, data analysis, and geospatial engineering, I bring a rare combination of technical depth and people-facing skills.</p>
+      <p>My career began at Tata Consultancy Services in Chennai, where I worked as an Assistant Systems Engineer supporting enterprise clients across IT operations, data reporting, and workflow automation. Since relocating to Milan in 2024, I have been delivering freelance IT and support services while advancing my academic qualifications.</p>
+      <p>I thrive in fast-paced, multinational environments. I am comfortable working with non-technical users, identifying root causes of problems, and turning feedback into measurable improvements. I am fluent in English (C2), conversational in Italian, and a native Tamil speaker.</p>
+    </div>
+    <div class="about-facts fade-in">
+      <div class="fact"><div class="fact-icon">📍</div><div><div class="fact-label">Location</div><div class="fact-value">Milan, Italy</div></div></div>
+      <div class="fact"><div class="fact-icon">🎓</div><div><div class="fact-label">Education</div><div class="fact-value">MSc Geo-Informatics, Polimi (2026)</div></div></div>
+      <div class="fact"><div class="fact-icon">💬</div><div><div class="fact-label">Languages</div><div class="fact-value">English C2 · Italian A1 · Tamil (Native)</div></div></div>
+      <div class="fact"><div class="fact-icon">🏅</div><div><div class="fact-label">Certifications</div><div class="fact-value">AWS Cloud Practitioner · Solutions Architect</div></div></div>
+      <div class="fact"><div class="fact-icon">🤝</div><div><div class="fact-label">Volunteering</div><div class="fact-value">European Solidarity Corps (ESC4Y)</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">Experience</div>
+  <h2 class="section-title">Professional Journey</h2>
+  <p class="section-subtitle">From enterprise IT operations in India to freelance tech support in Milan - here's where I've made an impact.</p>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Feb 2024 – Present</div>
+      <div class="exp-company">Freelance<br>Milan, Italy</div>
+    </div>
+    <div>
+      <div class="exp-role">IT & Customer Experience Specialist</div>
+      <ul class="exp-bullets">
+        <li>Delivered remote and on-site user support resolving software, hardware, and connectivity issues with fast resolution and clear communication.</li>
+        <li>Managed end-to-end onboarding and offboarding through structured workflows and ServiceNow-style ticketing systems.</li>
+        <li>Identified recurring issue patterns and documented solutions to reduce ticket volume and improve self-service resources.</li>
+        <li>Provided Microsoft 365, VPN, Active Directory, and application support to non-technical users across diverse backgrounds.</li>
+        <li>Maintained quality and data reporting using Excel and Google Sheets for performance tracking.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">ServiceNow</span><span class="exp-tag">Microsoft 365</span><span class="exp-tag">Active Directory</span><span class="exp-tag">Excel</span><span class="exp-tag">GIS Tools</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Feb 2022 – Jul 2023</div>
+      <div class="exp-company">Tata Consultancy Services<br>Chennai, India</div>
+    </div>
+    <div>
+      <div class="exp-role">Assistant Systems Engineer</div>
+      <ul class="exp-bullets">
+        <li>Handled L1/L2 IT support via ServiceNow and Jira, managing incidents within strict SLA timelines for enterprise clients including Advance Auto Parts (USA).</li>
+        <li>Administered Active Directory, Azure AD, group policies, mailbox setup, and Microsoft 365 access for hundreds of users.</li>
+        <li>Executed batch operations on AS400 and managed automated workloads using UC4 (Automic), ensuring business continuity.</li>
+        <li>Produced and maintained KPI dashboards using Excel, SQL queries, and internal reporting tools.</li>
+        <li>Supported cloud-based migrations on AWS and ArcGIS Online, producing interactive maps and dashboards for stakeholders.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">ServiceNow</span><span class="exp-tag">Jira</span><span class="exp-tag">AS400</span><span class="exp-tag">UC4/Automic</span><span class="exp-tag">Python</span><span class="exp-tag">SQL</span><span class="exp-tag">AWS</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-item fade-in">
+    <div class="exp-meta">
+      <div class="exp-date">Jun 2020 – Jul 2020</div>
+      <div class="exp-company">Europa Science & Research<br>Brazil (Remote)</div>
+    </div>
+    <div>
+      <div class="exp-role">GIS Intern</div>
+      <ul class="exp-bullets">
+        <li>Performed geospatial analysis using Google Earth Engine (GEE) with JavaScript API and processed large raster datasets in Python and R.</li>
+        <li>Created spatial maps and geocoding outputs using OpenStreetMap and web mapping using GeoPandas and ArcGIS.</li>
+        <li>Supported data visualization and analytics for environmental and spatial monitoring projects.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="exp-tag">GEE</span><span class="exp-tag">Python</span><span class="exp-tag">R</span><span class="exp-tag">ArcGIS</span><span class="exp-tag">OSM</span><span class="exp-tag">GeoPandas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-bg" id="skills">
+  <div class="section-eyebrow" style="color:var(--accent)">Skills & Tools</div>
+  <h2 class="section-title">What I Bring</h2>
+  <p class="section-subtitle">A broad technical toolkit built across IT operations, data analysis, customer experience, and geospatial engineering.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🎧</div>
+      <div class="skill-category">Support & CX</div>
+      <div class="skill-list">ServiceNow · Jira · Remote Desktop · Microsoft 365 Admin · Teams · SLA Management · Incident Resolution · Root Cause Analysis</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🖥️</div>
+      <div class="skill-category">IT Systems</div>
+      <div class="skill-list">Active Directory · Azure AD · Windows Server · AS400 · UC4/Automic · Citrix · VMware · DNS · DHCP · VPN · TCP/IP</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📊</div>
+      <div class="skill-category">Data & Reporting</div>
+      <div class="skill-list">Python · R · SQL · Excel (Pivot Tables, Dashboards) · Power BI · KPI Monitoring · Data Validation · ETL Pipelines</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🗺️</div>
+      <div class="skill-category">Geospatial & GIS</div>
+      <div class="skill-list">Google Earth Engine · ArcGIS · GeoPandas · OpenStreetMap · Raster Processing · Cadastral Data · Web Mapping</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-category">Cloud & Automation</div>
+      <div class="skill-list">AWS (Cloud Practitioner + Solutions Architect) · IAM · AI-assisted workflows · Automated job scheduling · Process optimisation</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-category">Soft Skills</div>
+      <div class="skill-list">English C2 Communication · Cross-functional Collaboration · Stakeholder Management · Documentation · Analytical Thinking</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Projects</div>
+  <h2 class="section-title">Work I'm Proud Of</h2>
+  <p class="section-subtitle">Hands-on projects spanning geospatial analysis, data reporting, IT automation, and cloud infrastructure.</p>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-num">01</div>
+      <span class="project-badge" style="background:rgba(26,60,107,0.08);color:var(--blue)">🗺️ GIS & Geospatial</span>
+      <div class="project-title">Environmental Geospatial Analysis</div>
+      <div class="project-desc">Processed large raster datasets in Python and R for environmental monitoring. Performed geospatial analysis using Google Earth Engine (JavaScript API), web mapping with GeoPandas and ArcGIS, and spatial geocoding with OpenStreetMap.</div>
+      <div class="project-tags">
+        <span class="project-tag">GEE</span><span class="project-tag">Python</span><span class="project-tag">R</span><span class="project-tag">ArcGIS</span><span class="project-tag">GeoPandas</span><span class="project-tag">OSM</span>
+      </div>
+      <div class="project-org">Europa Science & Research Development Group</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-num">02</div>
+      <span class="project-badge" style="background:rgba(200,169,110,0.12);color:#a07830">📊 Data & Reporting</span>
+      <div class="project-title">Enterprise KPI Dashboard & Reporting System</div>
+      <div class="project-desc">Built and maintained operational KPI dashboards using Excel pivot tables, SQL queries, and internal reporting tools. Validated large datasets from AS400, ServiceNow, and Active Directory - supporting SLA compliance for a major US automotive retail client.</div>
+      <div class="project-tags">
+        <span class="project-tag">Excel</span><span class="project-tag">SQL</span><span class="project-tag">AS400</span><span class="project-tag">ServiceNow</span><span class="project-tag">KPI</span>
+      </div>
+      <div class="project-org">Tata Consultancy Services</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-num">03</div>
+      <span class="project-badge" style="background:rgba(13,27,42,0.07);color:var(--navy)">⚙️ IT Automation</span>
+      <div class="project-title">Automated Batch Operations & Workflow Monitoring</div>
+      <div class="project-desc">Managed and monitored automated workloads using UC4 (Automic) job scheduling, running daily, monthly, and yearly batch operations on AS400. Investigated job failures, coordinated resolutions, and maintained execution logs to ensure zero-downtime business continuity.</div>
+      <div class="project-tags">
+        <span class="project-tag">UC4/Automic</span><span class="project-tag">AS400</span><span class="project-tag">Batch Ops</span><span class="project-tag">Incident Mgmt</span>
+      </div>
+      <div class="project-org">Tata Consultancy Services</div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-num">04</div>
+      <span class="project-badge" style="background:rgba(255,153,0,0.1);color:#b36b00">☁️ AWS Cloud</span>
+      <div class="project-title">Cloud Infrastructure & ArcGIS Online Migration</div>
+      <div class="project-desc">Supported cloud-based GIS migration to AWS and ArcGIS Online, enabling remote sensing and ecosystem monitoring workflows. Produced interactive maps and dashboards for stakeholders. Achieved AWS Cloud Practitioner and Solutions Architect credentials.</div>
+      <div class="project-tags">
+        <span class="project-tag">AWS</span><span class="project-tag">ArcGIS Online</span><span class="project-tag">IAM</span><span class="project-tag">Cloud Migration</span>
+      </div>
+      <div class="project-org">Tata Consultancy Services</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="edu-bg" id="education">
+  <div class="section-eyebrow">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <p class="section-subtitle">Engineering education spanning India, Turkey, and Italy - with an international Erasmus exchange program.</p>
+  <div class="edu-grid fade-in">
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Master of Science, Geo-Informatics Engineering</div>
+        <div class="edu-school">Politecnico di Milano</div>
+        <div class="edu-location">Milan, Italy</div>
+      </div>
+      <div class="edu-year">Expected Jul 2026</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Erasmus Exchange - Geomatics Engineering</div>
+        <div class="edu-school">Hacettepe University</div>
+        <div class="edu-location">Ankara, Turkey</div>
+      </div>
+      <div class="edu-year">Feb - Jun 2025</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">Bachelor of Engineering, Geo-Informatics</div>
+        <div class="edu-school">Anna University</div>
+        <div class="edu-location">Tamil Nadu, India</div>
+      </div>
+      <div class="edu-year">2017 - 2021</div>
+    </div>
+  </div>
+
+  <div style="margin-top:3.5rem">
+    <div class="section-eyebrow">Certifications</div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:2rem;color:var(--navy)">Professional Credentials</h3>
+    <div class="certs-list fade-in">
+      <div class="cert-item">
+        <div class="cert-badge">☁️</div>
+        <div><div class="cert-name">AWS Certified Cloud Practitioner</div><div class="cert-issuer">Amazon Web Services</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-badge">🏗️</div>
+        <div><div class="cert-name">AWS Certified Solutions Architect</div><div class="cert-issuer">Udemy</div></div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-badge">🔐</div>
+        <div><div class="cert-name">Identity and Access Management (IAM) Foundations</div><div class="cert-issuer">Udemy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-eyebrow" style="color:var(--accent)">Get In Touch</div>
+      <h2 class="section-title">Let's connect</h2>
+      <p class="section-subtitle">Whether you have an opportunity, a question, or just want to say hello - I'm always open to a conversation.</p>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="/cdn-cgi/l/email-protection#502022312635353e3e312438313e616010373d31393c7e333f3d" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div><div class="contact-link-label">Email</div><div class="contact-link-value"><span class="__cf_email__" data-cfemail="730301120516161d1d12071b121d424333141e121a1f5d101c1e">[email&#160;protected]</span></div></div>
+      </a>
+      <a href="tel:+393802112576" class="contact-link">
+        <div class="contact-link-icon">📞</div>
+        <div><div class="contact-link-label">Phone</div><div class="contact-link-value">+39 380 211 2576</div></div>
+      </a>
+      <a href="https://www.linkedin.com/in/praveen-kumar-s-993902228/" target="_blank" class="contact-link">
+        <div class="contact-link-icon">💼</div>
+        <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">Praveenkumar Saminathan</div></div>
+      </a>
+      <div class="contact-link" style="cursor:default">
+        <div class="contact-link-icon">📍</div>
+        <div><div class="contact-link-label">Location</div><div class="contact-link-value">Milan, Italy</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>2025 Praveenkumar Saminathan · Milan, Italy</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current =
